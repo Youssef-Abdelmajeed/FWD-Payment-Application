@@ -17,12 +17,22 @@ _Bool isnum(uint8_t* str)
 	while ((* str ) != '\0' && isnum)
 	{
 		/* numbers in ascii table is between DEC(48) and DEC(57) */
-		isnum = ((* str) >= 48 && (* str) <= 57||(* str)== '/' )? 1 : 0;
+		isnum = ((* str) >= 48 && (* str) <= 57)? 1 : 0;
 		str++;
 	}
 	return isnum;
 }
-
+_Bool isdate(uint8_t* str)
+{
+	_Bool isnum = 1;
+	while ((*str) != '\0' && isnum)
+	{
+		/* numbers in ascii table is between DEC(48) and DEC(57) */
+		isnum = ((*str) >= 48 && (*str) <= 57 || (*str) == '/') ? 1 : 0;
+		str++;
+	}
+	return isnum;
+}
 _Bool isalphabetic(uint8_t* str)
 {
 	_Bool isalpha = 1;
@@ -33,4 +43,18 @@ _Bool isalphabetic(uint8_t* str)
 		str++;
 	}
 	return isalpha;
+}
+void strcopy(uint8_t* src, uint8_t* des)
+{
+	uint8_t lenght = len(src);
+	if (lenght > 0)
+	{
+		/*copy each char form src to des*/
+		for (uint8_t i = 0; i < lenght; i++)
+		{
+			des[i] = src[i];
+		}
+		/* set the null char */
+		des[lenght] = '\0';
+	}
 }

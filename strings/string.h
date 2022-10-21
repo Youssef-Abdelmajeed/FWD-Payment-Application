@@ -17,11 +17,26 @@ uint8_t len(uint8_t* str);
  */
 _Bool isnum(uint8_t* str);
 /**
- * @brief function to check if the whole string conssist of alphabetic characters  '/' is allowed (special case )
+ * @brief function to check if the whole string conssist of numbers & '/' is allowed (special case )
+ *
+ * @param str String
+ * @return _Bool
+ */
+_Bool isdate(uint8_t* str);
+/**
+ * @brief function to check if the whole string conssist of alphabetic characters  
  * 
  * @param str String
  * @return _Bool 
  */
 _Bool isalphabetic(uint8_t* str);
+
+/**
+ * @brief simple implementaion on string copy function 
+ * 
+ * @param src  Source string 
+ * @param des  Destination string (note there is no size check on destination make sure destination >= Source)
+ */
+void strcopy(uint8_t* src, uint8_t* des);
 
 #endif // !_STRING_H_
