@@ -2,6 +2,9 @@
 #define TERMINAL_H_
 
 #include "..\Card\card.h"
+
+/* set debug to 1 if you want to use test functions */
+#define terminal_debug 1
 /* Terminal data struct */
 typedef struct ST_terminalData_t
 {
@@ -65,6 +68,20 @@ EN_terminalError_t setMaxAmount(ST_terminalData_t* termData, float maxAmount);
  */
 EN_terminalError_t isValidCardPAN(ST_cardData_t* cardData); // Optional
 
+/* test functions */
+#if terminal_debug>0
+void getTransactionDateTest(void);
 
+void isCardExpiredTest(void); 
+
+void getTransactionAmountTest(void);
+
+void isBelowMaxAmountTest(void);
+
+void setMaxAmountTest(void);
+
+void isValidCardPANTest(void);
+
+#endif /* test function debug mode */
 
 #endif // !TERMINAL_H_

@@ -12,12 +12,12 @@ EN_cardError_t getCardHolderName(ST_cardData_t* cardData)
 	if (namebuff != NULL)
 	{
 		/* if in debug mode */
-		#if debug>0
+		#if card_debug>0
 		/* get buffer from fixed array */
 			uint8_t namesTest[4][28] = { "Youssef abdelmajeed A","shortname","name1234567mixed1234","123456789101112125847" };
 			static uint8_t test_no = 0;
 			strcopy(namesTest[test_no++], namebuff);
-			test_no &= 0x3;
+			test_no &= 0x03;
 		#else
 		/* get buffer from stdin */
 			/* prompt the user */
@@ -60,12 +60,12 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t* cardData)
 	if (datebuff != NULL)
 	{	
 		/* if in debug mode */
-		#if debug>0
+		#if card_debug>0
 			/* get buffer from fixed array */
 			uint8_t datesTest[4][7] = { "05/22","0522","05/y6","05/223" };
 			static uint8_t test_no = 0;
 			strcopy(datesTest[test_no++], datebuff);
-			test_no &= 0x3;
+			test_no &= 0x03;
 		#else
 			/* get buffer from stdin */
 			/* prompt the user */
@@ -106,12 +106,12 @@ EN_cardError_t getCardPAN(ST_cardData_t* cardData)
 	{
 	
 		/* if in debug mode */
-		#if debug>0
+		#if card_debug>0
 			/* get buffer from fixed array */
 			uint8_t pansTest[4][20] = { "2769148304059987","666","2769148304059987a","2769148304059987125" };
 			static uint8_t test_no = 0;
 			strcopy(pansTest[test_no++], panbuff);
-			test_no &= 0x3;
+			test_no &= 0x03;
 		#else
 			/* get buffer from stdin */
 			/* prompt the user */
@@ -140,7 +140,7 @@ EN_cardError_t getCardPAN(ST_cardData_t* cardData)
 	return CARD_OK;
 
 }
-#if debug>0
+#if card_debug>0
 void getCardHolderNameTest(void)
 {
 	ST_cardData_t testCard;
