@@ -6,6 +6,9 @@
 #include <stdlib.h>
 #include "..\strings\string.h"
 
+/* set debug to 1 if you want to use test functions */
+#define debug 1
+
 /* card structure */
 typedef struct ST_cardData_t
 {
@@ -44,5 +47,13 @@ EN_cardError_t getCardExpiryDate(ST_cardData_t* cardData);
  */
 EN_cardError_t getCardPAN(ST_cardData_t* cardData);
 
+/* Test functions */
+#if debug>0
+void getCardHolderNameTest(void);
+
+void getCardExpiryDateTest(void);
+
+void getCardPANTest(void);
+#endif
 
 #endif // !CARD_H_
