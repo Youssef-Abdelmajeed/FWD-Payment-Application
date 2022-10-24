@@ -3,8 +3,8 @@
 int main(int argc ,char * argv[])
 {
 
-	//appStart();
-	recieveTransactionDataTest();
+	appStart();
+	//recieveTransactionDataTest();
 	return 0;
 } 
 
