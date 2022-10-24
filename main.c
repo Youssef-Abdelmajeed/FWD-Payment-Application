@@ -1,22 +1,33 @@
-#include "Card\card.h"
-#include "Terminal\terminal.h"
-#include "Server\server.h"
 #include "Application\app.h"
 
 int main(int argc ,char * argv[])
 {
-
-	
-	//getCardHolderNameTest(); 
-	//getCardExpiryDateTest();
-	//getCardPANTest();
-
-	 //getTransactionDateTest();
-	 //isCardExpiredTest();
-	 //getTransactionAmountTest();
-	 //isBelowMaxAmountTest();
-	 //setMaxAmountTest();
-	 //isValidCardPANTest();
+	appStart();
 	return 0;
 } 
+
+/* test functions 
+
+card
+ getCardHolderNameTest(); 
+ getCardExpiryDateTest();
+ getCardPANTest();
+-----------------------------
+terminal
+ getTransactionDateTest();
+ isCardExpiredTest();
+ getTransactionAmountTest();
+ isBelowMaxAmountTest();
+ setMaxAmountTest();
+ isValidCardPANTest();
+-----------------------------
+server
+ isValidAccountTest();
+ isBlockedAccountTest();
+ isAmountAvailableTest();
+ isBlockedAccountTest();
+
+*/
+
+
 

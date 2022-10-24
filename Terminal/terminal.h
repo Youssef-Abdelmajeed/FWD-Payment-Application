@@ -4,7 +4,7 @@
 #include "..\Card\card.h"
 
 /* set debug to 1 if you want to use test functions */
-#define terminal_debug 1
+#define terminal_debug 0
 /* Terminal data struct */
 typedef struct ST_terminalData_t
 {

@@ -58,3 +58,23 @@ void strcopy(uint8_t* src, uint8_t* des)
 		des[lenght] = '\0';
 	}
 }
+_Bool isTheSame(uint8_t* src, uint8_t* des)
+{
+	/* if the two strings are not equal */
+	if (len(src) != len(des)) return 0; 
+
+	uint8_t lenght = len(des);
+
+	
+	/* check each character */
+	for (uint8_t i = 0; i < lenght; i++)
+	{
+		/* if there a diffrent character */
+		if (src[i] != des[i])
+		{
+			return 0; 
+			
+		}
+	}
+	return 1;
+}

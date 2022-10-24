@@ -7,7 +7,7 @@
 #include "..\strings\string.h"
 
 /* set debug to 1 if you want to use test functions */
-#define card_debug 1
+#define card_debug 0
 
 /* card structure */
 typedef struct ST_cardData_t

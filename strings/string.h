@@ -38,5 +38,13 @@ _Bool isalphabetic(uint8_t* str);
  * @param des  Destination string (note there is no size check on destination make sure destination >= Source)
  */
 void strcopy(uint8_t* src, uint8_t* des);
+/**
+ * @brief check if Destination string is the same with the source 
+ * 
+ * @param src 
+ * @param des 
+ * @return _Bool 
+ */
+_Bool isTheSame(uint8_t* src, uint8_t* des);
 
 #endif // !_STRING_H_

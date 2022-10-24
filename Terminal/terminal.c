@@ -123,30 +123,26 @@ EN_terminalError_t isValidCardPAN(ST_cardData_t* cardData)
 	/* get number lenght */
 	lenght = len(cardData->primaryAccountNumber);
 
-	uint8_t* digitbuff = (uint8_t*)malloc(sizeof(uint8_t) * lenght);
+	/*flag to get every other number to mul by 2 */
+	_Bool everyother = 0; 
 
-	if (digitbuff != NULL)
+	/* check number from right to left */
+	for (char i = lenght - 1; i >= 0; i--)
 	{
-		/* convert from string to integer */
-		for (uint8_t i = 0; i < lenght; i++)
-		{
+		/* convert char to integer */
+		tmp = cardData->primaryAccountNumber[i] - '0';
+		
+		/* mul ever other digit by 2  */
+		tmp = (everyother) ? tmp * 2 : tmp;
 
-			digitbuff[i] = cardData->primaryAccountNumber[i] - 48;
-		}
-		for (uint8_t i = 0; i < lenght; i++)
-		{
-			/* even index mul by 2 and odd index mul by 1 */
-			tmp = (i % 2 == 0) ? (digitbuff[i] * 2) : (digitbuff[i] * 1);
+		/* if the number was two digits number sub 9 from it */
+		tmp = (tmp > 9) ? tmp - 9 : tmp; 
+		
+		/* get numbers sum */
+		sum += tmp;
 
-			/* if the number was two digit number multiply add the two digits*/
-			tmp = (tmp > 9) ? (tmp / 10) + (tmp % 10) : tmp;
-			/* sum the number mul by the wight */
-			sum += tmp;
-		}
+		everyother = !everyother;
 	}
-
-	free(digitbuff);
-
 	/* if the first digit of the sum is zero then the number is valid  Luhn number */
 	return (sum % 10 == 0)?TERMINAL_OK :INVALID_CARD;
 }
@@ -192,6 +188,7 @@ void isCardExpiredTest(void)
 	
 	printf("Tester Name: Youssef Abdelmajeed\n");
 	printf("Function Name: isCardExpired\n");
+	printf("please note that the card expiry date is 05/22\n");
 	for (uint8_t i = 0; i < lenght; i++)
 	{
 
@@ -237,6 +234,7 @@ void isBelowMaxAmountTest(void)
 	uint8_t expextedOutputs[4][18] = { "TERMINAL_OK","TERMINAL_OK","TERMINAL_OK","EXCEED_MAX_AMOUNT"};
 	printf("Tester Name: Youssef Abdelmajeed\n");
 	printf("Function Name: isBelowMaxAmountTest\n");
+	printf("please note that the max amount is set to be 5050.5\n");
 	for (uint8_t i = 0; i < lenght; i++)
 	{
 		printf("Test Case %d: %f \n", i + 1, DummyTerminals[i].transAmount);
