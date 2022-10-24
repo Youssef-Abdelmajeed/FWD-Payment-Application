@@ -11,7 +11,7 @@ EN_terminalError_t getTransactionDate(ST_terminalData_t* termData)
 	if (TransactionDatebuff != NULL)
 	{
 		/* if in debug mode */
-		#if card_debug>0
+		#if terminal_debug>0
 			/* get buffer from fixed array */
 				uint8_t TransactionDatesTest[4][12] = { "10/22/2022","10/b2/2022","055","10/22/20222" };
 				static uint8_t test_no = 0;
@@ -163,10 +163,9 @@ void getTransactionDateTest(void)
 	printf("Function Name: getTransactionDate\n");
 	for (uint8_t i = 0; i < lenght; i++)
 	{
-
 		printf("Test Case %d: %s \n", i + 1, TransactionDatesTest[i]);
 		printf("Expected Result: %s \n", expextedOutputs[i]);
-		printf("Actual Result: %s \n", getCardExpiryDate(&testTerminal) == TERMINAL_OK ? "TERMINAL_OK" : "WRONG_DATE");
+		printf("Actual Result: %s \n", getTransactionDate(&testTerminal) == TERMINAL_OK ? "TERMINAL_OK" : "WRONG_DATE");
 	}
 }
 void isCardExpiredTest(void)

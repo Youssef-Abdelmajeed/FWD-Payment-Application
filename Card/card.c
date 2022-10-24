@@ -108,7 +108,7 @@ EN_cardError_t getCardPAN(ST_cardData_t* cardData)
 		/* if in debug mode */
 		#if card_debug>0
 			/* get buffer from fixed array */
-			uint8_t pansTest[4][20] = { "2769148304059987","666","2769148304059987a","2769148304059987125" };
+			uint8_t pansTest[4][21] = { "2769148304059987","666","2769148304059987a","27691483040599871255" };
 			static uint8_t test_no = 0;
 			strcopy(pansTest[test_no++], panbuff);
 			test_no &= 0x03;
@@ -189,7 +189,7 @@ void getCardPANTest(void)
 	const uint8_t lenght = 4;
 
 	/* list of tests */
-	uint8_t pansTest[4][20] = { "2769148304059987","666","2769148304059987a","2769148304059987125" };
+	uint8_t pansTest[4][21] = { "2769148304059987","666","2769148304059987a","27691483040599871255" };
 
 	/* list of expected output */
 	uint8_t expextedOutputs[4][10] = { "CARD_OK","WRONG_PAN","WRONG_PAN","WRONG_PAN" };

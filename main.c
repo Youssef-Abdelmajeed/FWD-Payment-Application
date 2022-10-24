@@ -2,9 +2,7 @@
 
 int main(int argc ,char * argv[])
 {
-
 	appStart();
-	//recieveTransactionDataTest();
 	return 0;
 } 
 
@@ -29,7 +27,7 @@ server
  isBlockedAccountTest();
  isAmountAvailableTest();
  isBlockedAccountTest();
- istSavedTransactionsTest();
+ listSavedTransactionsTest();
 
 */
 
