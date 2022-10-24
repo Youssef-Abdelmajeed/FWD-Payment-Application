@@ -2,7 +2,9 @@
 
 int main(int argc ,char * argv[])
 {
-	appStart();
+
+	//appStart();
+	recieveTransactionDataTest();
 	return 0;
 } 
 
@@ -22,10 +24,12 @@ terminal
  isValidCardPANTest();
 -----------------------------
 server
+ recieveTransactionDataTest();
  isValidAccountTest();
  isBlockedAccountTest();
  isAmountAvailableTest();
  isBlockedAccountTest();
+ istSavedTransactionsTest();
 
 */
 

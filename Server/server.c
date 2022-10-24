@@ -4,7 +4,7 @@
 ST_accountsDB_t accountsDB[255] = 
 {
 	{.balance = 1000.0,.state = BLOCKED,.primaryAccountNumber = "2769148304059987" },
-	{.balance = 404000, .state = RUNNING,.primaryAccountNumber = "26789819223902201" },
+	{.balance = 4040, .state = RUNNING,.primaryAccountNumber = "26789819223902201" },
 	{.balance = 96204, .state = BLOCKED,.primaryAccountNumber = "25558569495666551" },
 	{.balance = 222,   .state = RUNNING,.primaryAccountNumber = "35854584549948483" },
 	{.balance = 6666,  .state = BLOCKED,.primaryAccountNumber = "52565959245959593" }
@@ -128,7 +128,7 @@ void listSavedTransactions(void)
 	{
 		ST_transaction_t* ptr = &transactionData[i];
 		printf("#########################\n");
-		printf("Transaction Sequence Number : %lld \n", sequance_no); 
+		printf("Transaction Sequence Number : %lld \n", ptr->transactionSequenceNumber); 
 		printf("Transaction Date : %s \n", ptr->terminalData.transactionDate); 
 		printf("Transaction Amount : %.4f\n", ptr->terminalData.transAmount);
 		uint8_t stindex = ptr->transState; 
@@ -143,9 +143,35 @@ void listSavedTransactions(void)
 
 /* test functions implementaion */
 #if server_debug > 0 
+
 void recieveTransactionDataTest(void)
 {
+	/* crate dummy cards */
+	ST_cardData_t card[2] =
+	{
+		{.cardExpirationDate = "05/22",.cardHolderName = "youssef abdelmajeed a",.primaryAccountNumber = "26789819223902201"},
+		{.cardExpirationDate = "06/22",.cardHolderName = "Mohamed Ahmed Moh",.primaryAccountNumber = "52565959245959593"}
+	};
+	/* create dummy terminal */
+	ST_terminalData_t terminal[2] =
+	{
+		{.maxTransAmount = 1000,.transactionDate = "05/02/2022",.transAmount = 50},
+		{.maxTransAmount = 1000,.transactionDate = "05/03/2022",.transAmount = 30},
 
+	};
+	/* dummy states */
+	EN_transState_t state[2] = { APPROVED,DECLINED_STOLEN_CARD };
+
+	printf("Tester Name: Youssef Abdelmajeed\n");
+	printf("Functions Name:  recieveTransactionData \n");
+
+	ST_transaction_t trans1 = { .cardHolderData = card[0],.terminalData = terminal[0],.transactionSequenceNumber = 1,.transState = state[0] };
+	printf("Test Case 1: \n");
+	recieveTransactionData(&trans1);
+
+	ST_transaction_t trans2 = { .cardHolderData = card[1],.terminalData = terminal[1],.transactionSequenceNumber = 2,.transState = state[1] };
+	printf("Test Case 2: \n");
+	recieveTransactionData(&trans2);
 }
 
 void isValidAccountTest(void)
@@ -225,11 +251,37 @@ void isAmountAvailableTest(void)
 
 void saveTransactionTest(void)
 {
-	
+	/* crate dummy cards */
+	ST_cardData_t card[2] =
+	{
+		{.cardExpirationDate = "05/22",.cardHolderName = "youssef abdelmajeed a",.primaryAccountNumber = "26789819223902201"},
+		{.cardExpirationDate = "06/22",.cardHolderName = "Mohamed Ahmed Moh",.primaryAccountNumber = "52565959245959593"}
+	};
+	/* create dummy terminal */
+	ST_terminalData_t terminal[2] =
+	{
+		{.maxTransAmount = 1000,.transactionDate = "05/02/2022",.transAmount = 50},
+		{.maxTransAmount = 1000,.transactionDate = "05/03/2022",.transAmount = 30},
+
+	};
+	/* dummy states */
+	EN_transState_t state[2] = { APPROVED,DECLINED_STOLEN_CARD };
+
+	printf("Tester Name: Youssef Abdelmajeed\n");
+	printf("Functions Name: saveTransactionTest & listSavedTransactions\n");
+
+	ST_transaction_t trans1 = { .cardHolderData = card[0],.terminalData = terminal[0],.transactionSequenceNumber = 1,.transState = state[0] };
+	printf("Test Case 1: \n");
+	saveTransaction(&trans1);
+
+	ST_transaction_t trans2 = { .cardHolderData = card[1],.terminalData = terminal[1],.transactionSequenceNumber = 2,.transState = state[1] };
+	printf("Test Case 2: \n");
+	saveTransaction(&trans2);
 }
 
 void listSavedTransactionsTest(void)
 {
-
+	/* save trasaction & listSavedTransactions is validated using the same function */
+	saveTransactionTest(); 
 }
 #endif /* server debug */
