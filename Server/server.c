@@ -49,6 +49,24 @@ EN_transState_t recieveTransactionData(ST_transaction_t* transData)
 	}
 	/* update trasdate */
 	transData->transState = state;
+
+	/* if the transaction is approved get reduced balance*/
+	if (state == APPROVED)
+	{
+		/* get the account new balance */
+		float newBalance = accountref.balance;
+
+		if (newBalance >= 0)
+		{
+			printf("the New balance after transaction is : %f\n", newBalance);
+		}
+		else
+		{
+			/* server error */
+			printf("INTERNAL_SERVER_ERROR\n");
+		}
+	}
+
 	/* if trasaction is saved */
 	if(saveTransaction(transData)==SERVER_OK)
 	{
